@@ -1,8 +1,15 @@
 package com.cs544.domain;
 
-public class Register {
+import javax.persistence.*;
 
-	public Student student ; 
+@Entity
+public class Register {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@ManyToOne
+	public Student student ;
+	@ManyToOne
 	public OfferingCourses offeringCourses ;
 	
 	public Register() {}

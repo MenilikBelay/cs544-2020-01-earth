@@ -6,9 +6,10 @@ import java.util.List;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
+@Table(name = "users")
 public class IUser {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	public String email;
 	public String password;
@@ -45,7 +46,7 @@ public class IUser {
 		this.password=password;
 		this.lastName =lastName;
 		this.roles = new ArrayList<>();
-		roles.addAll(roles);
+		this.roles.addAll(roles);
 	}
 
 	public void setEmail(String email) {

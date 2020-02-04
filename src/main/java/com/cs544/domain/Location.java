@@ -1,10 +1,19 @@
 package com.cs544.domain;
 
-public class Location {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 
+@Entity
+public class Location {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id ;
+	@Lob
 	private String description;
-	
+  
 	public Location(){}
 	public Location(long id, String description) {
 		this.id = id;

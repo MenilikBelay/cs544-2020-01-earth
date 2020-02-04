@@ -4,19 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Course {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private long Id;
 		private int courseID;
+		@Lob
 		private String description;
 		public long getId() {
 			return Id;
 		}
-		
-		
+						
 		public Course() {}
 		public Course(long id, int courseID, String description) {
 			Id = id;
