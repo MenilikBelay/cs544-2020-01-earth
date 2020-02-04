@@ -1,7 +1,7 @@
 package com.cs544.service;
 
-import java.util.stream.Collectors;
-
+import com.cs544.dao.UserDAO;
+import com.cs544.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,15 +11,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cs544.dao.IUserDAO;
-import com.cs544.domain.IUser;
+import java.util.stream.Collectors;
 
 public class UserDetailsServiceImp implements UserDetailsService {
 	
 	@Autowired
-	private IUserDAO userDAO;
+	private UserDAO userDAO;
 	
-	public void setUserdao(IUserDAO userdao) {
+	public void setUserdao(UserDAO userdao) {
 		this.userDAO = userdao;
 	}
 	
@@ -29,7 +28,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		IUser user = userDAO.getUser(username);
+		User user = userDAO.getUser(username);
 		UserBuilder builder = null;
 	    if (user != null) {
 	      builder = org.springframework.security.core.userdetails.User.withUsername(username);
