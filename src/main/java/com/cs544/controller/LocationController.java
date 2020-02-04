@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class LocationCntroller {
+public class LocationController {
 
     @Autowired
     private ILocationService locationService;

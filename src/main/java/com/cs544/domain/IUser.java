@@ -13,7 +13,7 @@ public class IUser {
 	private Long id;
 	public String email;
 	public String password;
-	public String firsName;
+	public String firstName;
 	public String lastName;
 	@ElementCollection
 	@CollectionTable(name = "authorities")
@@ -42,7 +42,7 @@ public class IUser {
 	public IUser() {}
 	public IUser (String email ,String password , String firstName,String lastName,List<String> roles ) {
 		this.email = email;
-		this.firsName=firstName;
+		this.firstName=firstName;
 		this.password=password;
 		this.lastName =lastName;
 		this.roles = new ArrayList<>();
@@ -59,10 +59,10 @@ public class IUser {
 		this.password = password;
 	}
 	public String getFirsName() {
-		return firsName;
+		return firstName;
 	}
 	public void setFirsName(String firsName) {
-		this.firsName = firsName;
+		this.firstName = firsName;
 	}
 	public String getLastName() {
 		return lastName;
