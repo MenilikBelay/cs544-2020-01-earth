@@ -1,4 +1,5 @@
 package com.cs544.domain;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,7 @@ public class Location {
 	private long id ;
 	@Lob
 	private String description;
-	
+  
 	public Location(){}
 	public Location(long id, String description) {
 		this.id = id;

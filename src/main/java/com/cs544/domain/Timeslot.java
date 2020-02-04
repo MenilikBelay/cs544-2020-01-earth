@@ -16,8 +16,7 @@ public class Timeslot {
 	  private Date beginTime;
 	  private Date endTime;
 	  private String abbrevition;
-  
-  
+public Timeslot(){}
 public Timeslot(String description, Date beginTime, Date endTime, String abbrevition) {
 	this.description = description;
 	this.beginTime = beginTime;
