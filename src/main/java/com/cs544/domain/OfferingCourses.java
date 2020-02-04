@@ -1,17 +1,32 @@
 package com.cs544.domain;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class OfferingCourses {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String OfferingCourseID; 
-	private LocalDate endDate; 
-	private LocalDate startDate; 
-	
+	private LocalDate endDate;
+	private LocalDate startDate;
+	@ManyToOne
 	private Course course ;
+	@OneToMany
+	@JoinColumn(name = "course_offering_id")
 	private List<Session> session;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 	
 	public OfferingCourses() {}
 		

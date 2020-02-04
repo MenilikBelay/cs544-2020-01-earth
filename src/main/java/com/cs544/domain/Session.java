@@ -1,13 +1,17 @@
 package com.cs544.domain;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class Session {
 
 	private long id;
+
 	private Location location;
 	private Timeslot timeslot;
 	private Date date ;
+
 	
   
 	public Session() {}
