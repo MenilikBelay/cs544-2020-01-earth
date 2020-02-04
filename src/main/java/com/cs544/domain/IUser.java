@@ -3,12 +3,17 @@ package com.cs544.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 public class IUser {
 	public String email;
 	public String password;
 	public String firsName;
 	public String lastName;
 	public List<String> roles;
+	
 	public String getEmail() {
 		return email;
 	}
