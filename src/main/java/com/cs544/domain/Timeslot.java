@@ -2,13 +2,20 @@ package com.cs544.domain;
 
 import java.time.LocalDate;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class Timeslot {	
-  private long id; 
-  private String description;
-  private Date beginTime;
-  private Date endTime;
-  private String abbrevition;
+@Entity
+public class Timeslot {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	  private long id; 
+	  private String description;
+	  private Date beginTime;
+	  private Date endTime;
+	  private String abbrevition;
   
   
 public Timeslot(String description, Date beginTime, Date endTime, String abbrevition) {
