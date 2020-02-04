@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.cs544.domain.Role;
 import com.cs544.service.UserDetailsServiceImp;
 
 @EnableWebSecurity
@@ -30,7 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-      http.authorizeRequests().anyRequest().hasAnyRole("ADMIN", "STUDENT", "FACULTY")
+      http.authorizeRequests().anyRequest().hasAnyRole(Role.ADMIN.toString(), 
+    		  Role.ADMIN.toString(), Role.FACULTY.toString())
       .and()
       .formLogin()
       .and()

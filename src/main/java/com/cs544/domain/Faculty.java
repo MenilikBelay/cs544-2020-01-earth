@@ -11,7 +11,7 @@ public class Faculty extends IUser {
 	private List<OfferingCourses> offerCourses ;
 
 	public Faculty() {}
-	public Faculty(String email ,String password , String firstName,String lastName,List<String>roles ) {
+	public Faculty(String email ,String password , String firstName,String lastName,List<Role>roles ) {
 		super(email, password, firstName, lastName, roles );
 		offerCourses = new ArrayList<OfferingCourses>();
 	}

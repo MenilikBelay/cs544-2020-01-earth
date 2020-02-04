@@ -1,5 +1,7 @@
 package com.cs544.service;
 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,7 +34,10 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	    if (user != null) {
 	      builder = org.springframework.security.core.userdetails.User.withUsername(username);
 	      builder.password(new BCryptPasswordEncoder().encode(user.getPassword()));
-	      builder.roles(user.getRoles().toArray(new String[0]));
+	      builder.roles(user.getRoles().parallelStream()
+	    		  .map(role -> role.toString())
+	    		  .collect(Collectors.toList())
+	    		  .toArray(new String[0]));	// convert to list of strings and then to array
 	    } else {
 	      throw new UsernameNotFoundException("User Not Found.");
 	    }

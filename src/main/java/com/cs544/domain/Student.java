@@ -26,7 +26,7 @@ public class Student extends IUser {
 
 	public Student() {}
 	
-	public Student(String email ,String password , String firstName,String lastName , String studentID, String barcode , List<String>roles ) {
+	public Student(String email ,String password , String firstName,String lastName , String studentID, String barcode , List<Role>roles ) {
 		super(email, password, firstName, lastName , roles);
 	
 		this.studentID = studentID;
