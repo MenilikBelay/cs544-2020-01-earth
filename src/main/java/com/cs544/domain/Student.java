@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.List;
 
 @Entity
-public class Student extends IUser {
+public class Student extends User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

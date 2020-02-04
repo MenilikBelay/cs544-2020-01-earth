@@ -1,6 +1,6 @@
 package com.cs544.service;
 
-import com.cs544.dao.ILocationDao;
+import com.cs544.dao.LocationDao;
 import com.cs544.domain.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ import java.util.List;
 
 @Service
 
-public class LocationServiceImp implements ILocationService {
+public class LocationServiceImpl implements LocationService {
 
     @Autowired
-    private ILocationDao locationDao;
+    private LocationDao locationDao;
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void save(Location location) {

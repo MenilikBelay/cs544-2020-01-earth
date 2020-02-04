@@ -1,7 +1,7 @@
 package com.cs544.controller;
 
 import com.cs544.domain.Location;
-import com.cs544.service.ILocationService;
+import com.cs544.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +13,7 @@ import java.util.List;
 public class LocationCntroller {
 
     @Autowired
-    private ILocationService locationService;
+    private LocationService locationService;
 
     @RequestMapping(value = "/")
     public String locations(Location location ){

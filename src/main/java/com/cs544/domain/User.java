@@ -7,7 +7,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name = "users")
-public class IUser {
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -39,8 +39,8 @@ public class IUser {
 		return email;
 	}
 
-	public IUser() {}
-	public IUser (String email ,String password , String firstName,String lastName,List<String> roles ) {
+	public User() {}
+	public User(String email , String password , String firstName, String lastName, List<String> roles ) {
 		this.email = email;
 		this.firsName=firstName;
 		this.password=password;
