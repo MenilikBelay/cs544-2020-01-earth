@@ -1,17 +1,30 @@
 package com.cs544.domain;
 
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.util.Date;
 
-public class Timeslot {	
-  private long id; 
-  private String description;
-  private Date beginTime;
-  private Date endTime;
-  private String abbrevition;
-  
-  
-public Timeslot(String description, Date beginTime, Date endTime, String abbrevition) {
+@Entity
+public class Timeslot {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	  private long id; 
+	  private String description;
+	@Temporal(TemporalType.TIMESTAMP)
+	  private Date beginTime;
+	  @Temporal(TemporalType.TIMESTAMP)
+	  private Date endTime;
+	  private String abbrevition;
+public Timeslot(){}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Timeslot(String description, Date beginTime, Date endTime, String abbrevition) {
 	this.description = description;
 	this.beginTime = beginTime;
 	this.endTime = endTime;

@@ -1,22 +1,39 @@
 package com.cs544.domain;
 
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+@Entity
 public class OfferingCourses {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private String OfferingCourseID;
+	@Temporal(TemporalType.DATE)
+	private Date endDate;
 
-	private String OfferingCourseID; 
-	private LocalDate endDate; 
-	private LocalDate startDate; 
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+	@ManyToOne
 	private Course course ;
+	@OneToMany
+	@JoinColumn(name = "offering_id")
 	private List<Session> session;
 	
 	public OfferingCourses() {}
 		
 	
-	public OfferingCourses(String offeringCourseID, LocalDate endDate, LocalDate startDate, Course course,
+	public OfferingCourses(String offeringCourseID, Date endDate, Date startDate, Course course,
 			List<Session> session) {
 		OfferingCourseID = offeringCourseID;
 		this.endDate = endDate;
@@ -37,16 +54,16 @@ public class OfferingCourses {
 	public void setOfferingCourseID(String offeringCourseID) {
 		OfferingCourseID = offeringCourseID;
 	}
-	public LocalDate getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(LocalDate endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public LocalDate getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 	public Course getCourse() {
