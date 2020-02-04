@@ -1,7 +1,12 @@
 package com.cs544.domain;
 
-import java.util.List;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.List;
+@Entity
+@Table(name = "adminstrator")
 public class Admin extends IUser{
 	
 	public Admin() {}

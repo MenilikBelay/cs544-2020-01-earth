@@ -9,7 +9,7 @@ import javax.persistence.Lob;
 @Entity
 public class Location {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id ;
 	@Lob
 	private String description;

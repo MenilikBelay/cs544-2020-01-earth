@@ -1,22 +1,18 @@
 package com.cs544.domain;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.ManyToOne;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 public class Session {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@ManyToOne
 	private Location location;
 	@ManyToOne
 	private Timeslot timeslot;
+	@Temporal(TemporalType.DATE)
 	private Date date ;
 	
   
