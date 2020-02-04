@@ -1,0 +1,27 @@
+Student :
+	2. select course offering by course offering id and student id [Register] -->
+			((get sessions from course offering by student id from the attendance [Attendance, Session, CourseOffering]))
+
+
+
+
+
+
+
+
+
+
+
+Faculty:
+	7. Get all course offerings having the specified Faculty id --> REUSE [Student 2, inside double bracket ((...))]
+	8. List course offerings the professor is teaching --select one course offering--> select * sessions in that course offering --select one specific session --> 
+			select * attendances for that session  
+
+
+
+
+
+
+Admin: 
+
+
