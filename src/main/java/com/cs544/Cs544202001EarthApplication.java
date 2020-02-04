@@ -9,5 +9,6 @@ public class Cs544202001EarthApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Cs544202001EarthApplication.class, args);
 	}
+	
 
 }
