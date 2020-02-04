@@ -7,6 +7,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name = "users")
+
 public class IUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
