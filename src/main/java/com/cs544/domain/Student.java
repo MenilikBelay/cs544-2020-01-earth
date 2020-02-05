@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import java.util.List;
 
 @Entity
-public class Student extends User {
+public class Student extends IUser {
 
 	private String studentID;
 	private String barcode;

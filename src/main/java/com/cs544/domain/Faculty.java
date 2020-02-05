@@ -5,7 +5,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-public class Faculty extends User {
+public class Faculty extends IUser {
 
 	@OneToMany
 	private List<OfferingCourses> offerCourses ;

@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class LocationController {
+@RequestMapping(value = "/admin")
+public class AdminController {
 
     @Autowired
     private LocationService locationService;
 
     @RequestMapping(value = "/")
     public String locations(Location location ){
-        return "redirect:/locationlist";
+        return "admin";
 
     }
 
