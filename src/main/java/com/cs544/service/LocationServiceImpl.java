@@ -1,12 +1,13 @@
 package com.cs544.service;
 
-import com.cs544.dao.LocationDao;
+import com.cs544.dao.LocationRepository;
 import com.cs544.domain.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,7 +15,8 @@ import java.util.List;
 public class LocationServiceImpl implements LocationService {
 
     @Autowired
-    private LocationDao locationDao;
+    private LocationRepository locationDao;
+    
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void save(Location location) {
@@ -22,11 +24,11 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public List<Location> findAll() {
-
-        return locationDao.findAll();
+    	List<Location> locations = new ArrayList<Location>();
+        locationDao.findAll().forEach(locations::add);
+        return locations;
     }
 
 }

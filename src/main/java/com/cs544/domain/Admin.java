@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.List;
 @Entity
 @Table(name = "adminstrator")
-public class Admin extends IUser {
+public class Admin extends Person {
 	
 	public Admin() {}
 	
