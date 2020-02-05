@@ -8,9 +8,9 @@ public class Register {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@ManyToOne
-	public Student student ;
+	private Student student;
 	@ManyToOne
-	public OfferedCourse offeringCourses ;
+	private CourseOffering courseOffering;
 	
 	public Register() {}
 	
@@ -20,11 +20,11 @@ public class Register {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	public OfferedCourse getOfferingCourses() {
-		return offeringCourses;
+	public CourseOffering getOfferedCourses() {
+		return courseOffering;
 	}
-	public void setOfferingCourses(OfferedCourse offeringCourses) {
-		this.offeringCourses = offeringCourses;
+	public void setOfferedCourses(CourseOffering courseOffering) {
+		this.courseOffering = courseOffering;
 	}
 	
 }

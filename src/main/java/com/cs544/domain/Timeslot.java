@@ -7,14 +7,15 @@ import java.util.Date;
 public class Timeslot {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	  private long id; 
-	  private String description;
-	@Temporal(TemporalType.TIMESTAMP)
-	  private Date beginTime;
-	  @Temporal(TemporalType.TIMESTAMP)
-	  private Date endTime;
-	  private String abbrevition;
-public Timeslot(){}
+	private long id; 
+	private String description;
+	@Temporal(TemporalType.TIME)
+	private Date beginTime;
+	@Temporal(TemporalType.TIME)
+	private Date endTime;
+	private String abbrevition;
+
+	public Timeslot(){}
 
 	public long getId() {
 		return id;
@@ -29,31 +30,31 @@ public Timeslot(){}
 	this.beginTime = beginTime;
 	this.endTime = endTime;
 	this.abbrevition = abbrevition;
-}
-public String getDescription() {
-	return description;
-}
-public void setDescription(String description) {
-	this.description = description;
-}
-public Date getBeginTime() {
-	return beginTime;
-}
-public void setBeginTime(Date beginTime) {
-	this.beginTime = beginTime;
-}
-public Date getEndTime() {
-	return endTime;
-}
-public void setEndTime(Date endTime) {
-	this.endTime = endTime;
-}
-public String getAbbrevition() {
-	return abbrevition;
-}
-public void setAbbrevition(String abbrevition) {
-	this.abbrevition = abbrevition;
-}
-  
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Date getBeginTime() {
+		return beginTime;
+	}
+	public void setBeginTime(Date beginTime) {
+		this.beginTime = beginTime;
+	}
+	public Date getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+	public String getAbbrevition() {
+		return abbrevition;
+	}
+	public void setAbbrevition(String abbrevition) {
+		this.abbrevition = abbrevition;
+	}
+	  
   
 }

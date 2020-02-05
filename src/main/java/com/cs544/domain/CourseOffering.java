@@ -6,13 +6,31 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class OfferedCourse {
+public class CourseOffering {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String OfferingCourseID;
+	@Column(unique = true)
+	private String courseOfferingId;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+	@ManyToOne
+	private Course course ;
+	@OneToMany
+	private List<Session> session;
+	
+	public CourseOffering() {}
+	
+	public CourseOffering(Date startDate, Date endDate, Course course,
+			List<Session> session) {
+		this.endDate = endDate;
+		this.startDate = startDate;
+		this.course = course;
+		this.session = new ArrayList<>();
+		this.session.addAll(session);
+	}
 
 	public Long getId() {
 		return id;
@@ -22,38 +40,12 @@ public class OfferedCourse {
 		this.id = id;
 	}
 
-	@Temporal(TemporalType.DATE)
-	private Date startDate;
-	@ManyToOne
-	private Course course ;
-	@OneToMany
-	@JoinColumn(name = "offering_id")
-	private List<Session> session;
-	
-	public OfferedCourse() {}
-		
-	
-	public OfferedCourse(String offeringCourseID, Date endDate, Date startDate, Course course,
-			List<Session> session) {
-		OfferingCourseID = offeringCourseID;
-		this.endDate = endDate;
-		this.startDate = startDate;
-		this.course = course;
-		this.session = new ArrayList<>();
-		this.session.addAll(session);
-	}
 
 	public void addSession(Session session )
 	{
 		this.session.add(session);
 	}
 
-	public String getOfferingCourseID() {
-		return OfferingCourseID;
-	}
-	public void setOfferingCourseID(String offeringCourseID) {
-		OfferingCourseID = offeringCourseID;
-	}
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -78,6 +70,13 @@ public class OfferedCourse {
 	public void setSession(List<Session> session) {
 		this.session = session;
 	}
-	
+
+	public String getCourseOfferingId() {
+		return courseOfferingId;
+	}
+
+	public void setCourseOfferingId(String courseOfferingId) {
+		this.courseOfferingId = courseOfferingId;
+	}	
 
 }

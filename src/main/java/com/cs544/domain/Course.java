@@ -1,5 +1,6 @@
 package com.cs544.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +12,8 @@ public class Course {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private long Id;
-		private int courseID;
+		@Column(unique = true)
+		private String courseID;
 		@Lob
 		private String description;
 		public long getId() {
@@ -19,7 +21,7 @@ public class Course {
 		}
 						
 		public Course() {}
-		public Course(long id, int courseID, String description) {
+		public Course(long id, String courseID, String description) {
 			Id = id;
 			this.courseID = courseID;
 			this.description = description;
@@ -28,10 +30,10 @@ public class Course {
 		private void setId(long id) {
 			Id = id;
 		}
-		public int getCourseID() {
+		public String getCourseID() {
 			return courseID;
 		}
-		public void setCourseID(int courseID) {
+		public void setCourseID(String courseID) {
 			this.courseID = courseID;
 		}
 		public String getDescription() {

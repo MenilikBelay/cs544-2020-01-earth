@@ -1,7 +1,10 @@
 package com.cs544.domain;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Session {
@@ -13,11 +16,16 @@ public class Session {
 	@ManyToOne
 	private Timeslot timeslot;
 	@Temporal(TemporalType.DATE)
-	private Date date ;
+	private Date date;
+	@OneToMany
+	private List<Record> records;
 	
   
-	public Session() {}
+	public Session() {
+		this.records = new ArrayList<Record>();
+	}
 	public Session(Location location, Timeslot timeslot, Date date) {
+		this();
 		this.location = location;
 		this.timeslot = timeslot;
 		this.date = date;
@@ -25,6 +33,12 @@ public class Session {
 
 	
 	
+	public List<Record> getRecords() {
+		return records;
+	}
+	public void setRecords(List<Record> records) {
+		this.records = records;
+	}
 	public long getId() {
 		return id;
 	}
@@ -48,5 +62,11 @@ public class Session {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public void addRecord (Record record) {
+		if (record != null) {
+			this.records.add(record);
+		}
 	}
 }
