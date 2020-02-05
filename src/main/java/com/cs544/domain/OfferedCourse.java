@@ -20,8 +20,7 @@ public class OfferedCourse {
 	@ManyToOne
 	@JsonIgnore
 	private Course course ;
-	@Transient
-	private String courseid;
+
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "offering_id")
@@ -42,13 +41,7 @@ public class OfferedCourse {
 	public Long getId() {
 		return id;
 	}
-	public String getCourseid() {
-		return courseid;
-	}
 
-	public void setCourseid(String courseid) {
-		this.courseid = courseid;
-	}
 	public void setId(Long id) {
 		this.id = id;
 	}

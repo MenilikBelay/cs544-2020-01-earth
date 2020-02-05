@@ -73,10 +73,10 @@ public class AdminController {
     //........timeslot crud end...............
 
     //...........courseoffering crud start..........
-        @PostMapping("/courseofferings")
-        public OfferedCourse add(@Valid @RequestBody OfferedCourse offerdCourses){
+        @PostMapping("/courses/{id}/courseofferings")
+        public OfferedCourse add(@PathVariable(value = "id") String id,@Valid @RequestBody OfferedCourse offerdCourses){
 
-        return courseofferingService.add(offerdCourses);
+        return courseofferingService.add(offerdCourses,id);
 
         }
 
