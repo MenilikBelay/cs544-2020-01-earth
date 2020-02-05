@@ -5,35 +5,32 @@ import javax.persistence.Entity;
 import java.util.List;
 
 @Entity
-public class Student extends Person {
+public class Student extends PersonRole {
 
 	private String studentID;
 	private String barcode;
 
-	public Student() {}
+	private Student() {
+		super(Role.STUDENT);
+	}
 	
-	public Student(String email ,String password , String firstName,String lastName , String studentID, String barcode , List<Role>roles ) {
-		super(email, password, firstName, lastName , roles);
-	
+	public Student(String studentID, String barcode) {
+		this();
 		this.studentID = studentID;
 		this.barcode = barcode;
-}
-
+	}
 
 	public String getStudentID() {
 		return studentID;
 	}
 
-
 	public void setStudentID(String studentID) {
 		this.studentID = studentID;
 	}
 
-
 	public String getBarcode() {
 		return barcode;
 	}
-
 
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;

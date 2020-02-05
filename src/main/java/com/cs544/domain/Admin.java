@@ -1,18 +1,15 @@
 package com.cs544.domain;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.List;
+
 @Entity
-@Table(name = "adminstrator")
-public class Admin extends Person {
+@Table(name = "administrator")
+public class Admin extends PersonRole {
 	
-	public Admin() {}
-	
-	public Admin(String email ,String password , String firstName,String lastName,List<Role>roles ) {
-		super(email, password, firstName, lastName,roles);
-		}
+	public Admin() {
+		super(Role.ADMIN);
+	}
 
 }

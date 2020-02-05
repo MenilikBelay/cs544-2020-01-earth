@@ -1,55 +1,57 @@
 package com.cs544.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	public String email;
-	public String password;
-	public String firstName;
-	public String lastName;
+	private String email;
+	private String password;
+	private String firstName;
+	private String lastName;
+	@OneToMany
+	@JoinColumn(name = "user_id")
+	private List<PersonRole> personRoles; 
+
+	private Person () {}
 	
-	@ElementCollection(targetClass = Role.class)
-	@JoinTable(name = "authorities", joinColumns = @JoinColumn(name = "id"))
-	@Column(name = "role", nullable = false)
-	@Enumerated(EnumType.STRING)
-	public List<Role> roles;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public Person() {}
-	public Person (String email ,String password , String firstName,String lastName,List<Role> roles ) {
+	public Person (String email ,String password , String firstName,String lastName, List<PersonRole> roles) {
+		if (roles == null || roles.isEmpty()) {
+			//throw exception as at least one role is required
+			throw new IllegalArgumentException("Role can not be empty for a user");
+		} else if (roles.size() > 3) {
+			throw new IllegalArgumentException("User can not have more than three roles");
+		}
 		this.email = email;
 		this.firstName=firstName;
 		this.password=password;
 		this.lastName =lastName;
-		this.roles = new ArrayList<>();
-		this.roles.addAll(roles);
+		this.personRoles = roles;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	private void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<PersonRole> getPersonRoles() {
+		return personRoles;
+	}
+
+	public void setPersonRoles(List<PersonRole> roles) {
+		this.personRoles = roles;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -72,6 +74,16 @@ public class Person {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	/**
+	 * Return list of roles a person has.
+	 * @return
+	 */
+	public List<Role> getRoles() {
+		return personRoles.parallelStream()
+				.map(pr -> pr.getRole())
+				.collect(Collectors.toList());
 	}
 
 }

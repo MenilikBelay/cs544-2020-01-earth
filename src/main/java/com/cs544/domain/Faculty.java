@@ -4,29 +4,26 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
-public class Faculty extends Person {
+public class Faculty extends PersonRole {
 
-	@OneToMany
-	private List<OfferedCourse> offerCourses ;
-
-	public Faculty() {}
-	public Faculty(String email ,String password , String firstName,String lastName,List<Role>roles ) {
-		super(email, password, firstName, lastName, roles );
-		offerCourses = new ArrayList<OfferedCourse>();
-	}
-
-	public void addOfferingCourse(List<OfferedCourse> offerCourse)
-	{
-		offerCourses.addAll(offerCourse);
+	private String facultyId;
+	
+	private Faculty() {
+		super(Role.FACULTY);
 	}
 	
-	public List<OfferedCourse> getOfferCourses() {
-		return offerCourses;
+	public Faculty(String facultyId) {
+		this();
+		this.facultyId = facultyId;
 	}
 
-	public void setOfferCourses(List<OfferedCourse> offerCourses) {
-		this.offerCourses = offerCourses;
+	public String getFacultyId() {
+		return facultyId;
 	}
-	
+
+	public void setFacultyId(String facultyId) {
+		this.facultyId = facultyId;
+	}	
 }

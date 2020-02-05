@@ -16,10 +16,10 @@ import com.cs544.domain.Person;
 public class UserDetailsServiceImp implements UserDetailsService {
 	
 	@Autowired
-	private PersonRepository userDAO;
+	private PersonRepository personRepository;
 	
-	public void setUserdao(PersonRepository userdao) {
-		this.userDAO = userdao;
+	public void setPersonRepository(PersonRepository personRepository) {
+		this.personRepository = personRepository;
 	}
 	
 	/**
@@ -28,7 +28,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Person user = userDAO.findByEmail(username).orElse(null);
+		Person user = personRepository.findByEmail(username).orElse(null);
 		UserBuilder builder = null;
 	    if (user != null) {
 	      builder = org.springframework.security.core.userdetails.User.withUsername(username);
