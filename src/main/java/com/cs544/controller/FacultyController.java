@@ -32,8 +32,8 @@ public class FacultyController {
     	return students;
     }
     @RequestMapping(value = "/sessions" , method = RequestMethod.GET)
-    public List<Session> getSessions(String sessionID) {  		
-    	List<Session> sessions = sessionService.getSessions(sessionID);
+    public List<Session> getSessions() {  		
+    	List<Session> sessions = sessionService.getSessions();
     	return sessions;
     }
 }

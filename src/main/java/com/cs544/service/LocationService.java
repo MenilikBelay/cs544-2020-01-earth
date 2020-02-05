@@ -8,5 +8,7 @@ public interface LocationService {
 
     public void save(Location location);
     List<Location> findAll();
-    void update(Location location);
+    public void update(Location location);
+    public boolean delete(Location location);
+
 }

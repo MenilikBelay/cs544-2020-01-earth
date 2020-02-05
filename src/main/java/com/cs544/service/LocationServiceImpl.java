@@ -34,26 +34,15 @@ public class LocationServiceImpl implements LocationService {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void update(Location location) {
-    	List<Location> locations = new ArrayList<Location>();
-    	locations =  (List<Location>) locationDao.findAll();
-    	boolean flag = false;
-    	for(Location loc : locations)
-    	{
-    		if(loc.getLocationID().equals(location.getLocationID()))
-    		{loc.setDescription(location.getDescription());
-    		flag = true;}
-    	}if(flag == false)
-	    	{
-    			save(location);
-	    	}
+    	Location previousLocation = locationDao.getLocationByLocationID(location.getLocationID());
+    	previousLocation.setDescription(location.getDescription());
+    	save(previousLocation);
     }
-  /*  
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public boolean delet() {
-    	List<Location> locations = new ArrayList<Location>();
-        locationDao.findAll().forEach(locations::add);
-        return locations;
-    }
-     */ 
+
+	@Override
+	public boolean delete(Location location) {
+    	Location previousLocation = locationDao.getLocationByLocationID(location.getLocationID());
+	    locationDao.delete(previousLocation);
+        return true;
+	} 
 }

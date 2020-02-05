@@ -15,7 +15,7 @@ public class Session {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	String sessionId;
+	String sessionID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Location location;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -55,10 +55,10 @@ public class Session {
 	}
 	
 	public String getSessionId() {
-		return sessionId;
+		return sessionID;
 	}
 	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
+		this.sessionID = sessionId;
 	}
 	public Location getLocation() {
 		return location;

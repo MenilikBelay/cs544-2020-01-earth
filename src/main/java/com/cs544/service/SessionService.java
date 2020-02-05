@@ -9,6 +9,6 @@ import java.util.List;
 public interface SessionService {
 
 	public List<Student> getStudentsbySession(String sessionID);
-	public List<Session> getSessions(String sessionID);
+	public List<Session> getSessions();
 
 }
