@@ -10,16 +10,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.cs544.dao.IUserDAO;
+import com.cs544.dao.UserRepository;
 import com.cs544.domain.IUser;
 
 public class UserDetailsServiceImp implements UserDetailsService {
 	
 	@Autowired
-	private IUserDAO userDAO;
+	private UserRepository userDAO;
 	
-	public void setUserdao(IUserDAO userdao) {
+	public void setUserdao(UserRepository userdao) {
 		this.userDAO = userdao;
 	}
 	
@@ -29,7 +28,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		IUser user = userDAO.getUser(username);
+		IUser user = userDAO.findByEmail(username).orElse(null);
 		UserBuilder builder = null;
 	    if (user != null) {
 	      builder = org.springframework.security.core.userdetails.User.withUsername(username);
