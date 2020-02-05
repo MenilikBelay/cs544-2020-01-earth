@@ -34,6 +34,10 @@ public class AdminController {
         courseService.deleteCourseById(id);
 
    }
+   @PutMapping("/courses/{id}")
+   public Course update(@PathVariable(value = "id") String courseId,@Valid @RequestBody Course course){
+        return courseService.update(courseId,course);
+   }
 
     @RequestMapping(value = "/")
     public String locations(Location location ){
