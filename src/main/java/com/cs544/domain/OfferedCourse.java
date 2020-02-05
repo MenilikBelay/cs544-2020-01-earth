@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class OfferingCourses {
+public class OfferedCourse {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -30,10 +30,10 @@ public class OfferingCourses {
 	@JoinColumn(name = "offering_id")
 	private List<Session> session;
 	
-	public OfferingCourses() {}
+	public OfferedCourse() {}
 		
 	
-	public OfferingCourses(String offeringCourseID, Date endDate, Date startDate, Course course,
+	public OfferedCourse(String offeringCourseID, Date endDate, Date startDate, Course course,
 			List<Session> session) {
 		OfferingCourseID = offeringCourseID;
 		this.endDate = endDate;

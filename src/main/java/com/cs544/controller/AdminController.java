@@ -22,28 +22,13 @@ public class AdminController {
 
     }
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @RequestMapping(value = "/locations",method = RequestMethod.POST)
     public String save(Location location ){
-//        Location  location=new Location();
-//        location.setDescription("dalby hall");
         locationService.save(location);
-//        Location  location2=new Location();
-//        location2.setDescription("142 bld");
-//        locationService.save(location2);
-
         return "redirect:/locationlist";
     }
-    @RequestMapping(value = "/locationlist", method = RequestMethod.GET)
+    @RequestMapping(value = "/locations", method = RequestMethod.GET)
     public List<Location> findAll(){
         return locationService.findAll();
     }
-
-
-
-
-
-
-
-
-
 }
