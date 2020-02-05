@@ -13,15 +13,6 @@ public class OfferedCourse {
 	private String OfferingCourseID;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@ManyToOne
@@ -42,7 +33,13 @@ public class OfferedCourse {
 		this.session = new ArrayList<>();
 		this.session.addAll(session);
 	}
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public void addSession(Session session )
 	{
 		this.session.add(session);

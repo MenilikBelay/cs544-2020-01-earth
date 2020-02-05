@@ -9,9 +9,9 @@ public class Timeslot {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	  private long id; 
 	  private String description;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIME)
 	  private Date beginTime;
-	  @Temporal(TemporalType.TIMESTAMP)
+	  @Temporal(TemporalType.TIME)
 	  private Date endTime;
 	  private String abbrevition;
 public Timeslot(){}
