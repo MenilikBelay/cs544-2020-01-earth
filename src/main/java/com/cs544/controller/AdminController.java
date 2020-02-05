@@ -29,6 +29,11 @@ public class AdminController {
        return  courseService.getCourseById(courseId);
     }
 
+   @DeleteMapping("/courses/{id}")
+   public void deleteCourseById(@PathVariable(value = "id") String id){
+        courseService.deleteCourseById(id);
+
+   }
 
     @RequestMapping(value = "/")
     public String locations(Location location ){

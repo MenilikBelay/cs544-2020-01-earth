@@ -17,8 +17,17 @@ public class Course {
 		public long getId() {
 			return Id;
 		}
-						
-		public Course() {}
+
+	@Override
+	public String toString() {
+		return "Course{" +
+				"Id=" + Id +
+				", courseID='" + courseID + '\'' +
+				", description='" + description + '\'' +
+				'}';
+	}
+
+	public Course() {}
 		public Course(long id, String courseID, String description) {
 			Id = id;
 			this.courseID = courseID;
