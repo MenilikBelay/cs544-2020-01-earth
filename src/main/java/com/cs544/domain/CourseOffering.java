@@ -10,6 +10,8 @@ public class CourseOffering {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(unique = true)
+	private String courseOfferingId;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	@Temporal(TemporalType.DATE)
@@ -68,6 +70,13 @@ public class CourseOffering {
 	public void setSession(List<Session> session) {
 		this.session = session;
 	}
-	
+
+	public String getCourseOfferingId() {
+		return courseOfferingId;
+	}
+
+	public void setCourseOfferingId(String courseOfferingId) {
+		this.courseOfferingId = courseOfferingId;
+	}	
 
 }
