@@ -7,7 +7,7 @@ public class Faculty extends PersonRole {
 
 	private String facultyId;
 	
-	private Faculty() {
+	public Faculty() {
 		super(Role.FACULTY);
 	}
 	

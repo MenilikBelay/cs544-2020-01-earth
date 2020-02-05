@@ -12,8 +12,9 @@ import javax.persistence.Table;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
+
 @Table(name = "user_role")
-public abstract class PersonRole {
+public  class PersonRole {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -21,7 +22,7 @@ public abstract class PersonRole {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	private PersonRole () {}
+	public PersonRole () {}
 	
 	public PersonRole (Role role) {
 		if (role == null) {

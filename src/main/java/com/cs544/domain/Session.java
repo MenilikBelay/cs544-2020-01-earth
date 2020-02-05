@@ -1,5 +1,7 @@
 package com.cs544.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class Session {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	@OneToMany
+	@JsonIgnore
 	private List<Record> records;
 	
   

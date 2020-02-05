@@ -18,7 +18,7 @@ public class Person {
 	@JoinColumn(name = "user_id")
 	private List<PersonRole> personRoles; 
 
-	private Person () {}
+	public Person () {}
 	
 	public Person (String email ,String password , String firstName,String lastName, List<PersonRole> roles) {
 		if (roles == null || roles.isEmpty()) {
