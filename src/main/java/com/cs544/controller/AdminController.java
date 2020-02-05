@@ -52,22 +52,24 @@ public class AdminController {
 
         return  timeSlotService.add(timeslot);
     }
-   /* @GetMapping("/courses/{id}")
-    public Course getCourseById(@PathVariable(value = "id") String courseId){
-        return  courseService.getCourseById(courseId);
+   @GetMapping("/timeslots/{id}")
+    public Timeslot getTimeSlotById(@PathVariable(value = "id") Long timeslotid){
+        return  timeSlotService.getTimeSlotById(timeslotid);
     }
 
-    @DeleteMapping("/courses/{id}")
-    public void deleteCourseById(@PathVariable(value = "id") String id){
-        courseService.deleteCourseById(id);
+    @DeleteMapping("/timeslots/{id}")
+    public void deleteTimeSlotById(@PathVariable(value = "id") Long id){
+       timeSlotService.deleteById(id);
 
     }
-    @PutMapping("/courses/{id}")
-    public Course update(@PathVariable(value = "id") String courseId,@Valid @RequestBody Course course){
-        return courseService.update(courseId,course);
-    }*/
+    @PutMapping("/timeslots/{id}")
+    public Timeslot update(@PathVariable(value = "id") Long timeslotid,@Valid @RequestBody Timeslot timeslot){
+        return timeSlotService.update(timeslotid,timeslot);
+    }
     //........timeslot crud end...............
     @RequestMapping(value = "/")
+
+
     public String locations(Location location ){
         return "admin";
 
