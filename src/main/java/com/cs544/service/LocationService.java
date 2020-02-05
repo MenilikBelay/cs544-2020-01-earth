@@ -4,7 +4,7 @@ import com.cs544.domain.Location;
 
 import java.util.List;
 
-public interface ILocationService {
+public interface LocationService {
 
     public void save(Location location);
     List<Location> findAll();
