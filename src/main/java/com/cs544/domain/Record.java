@@ -14,15 +14,12 @@ public class Record {
 	private long id;
 	@ManyToOne
 	private Student student;
-	@OneToOne
-	private Session session;
 
 	public Record() {}
 	
-	public Record(long id, Student student, Session session) {
+	public Record(long id, Student student) {
 		this.id = id;
 		this.student = student;
-		this.session = session;
 	}
 	public long getId() {
 		return id;
@@ -35,11 +32,5 @@ public class Record {
 	}
 	public void setStudent(Student student) {
 		this.student = student;
-	}
-	public Session getSession() {
-		return session;
-	}
-	public void setSession(Session session) {
-		this.session = session;
 	}
 }

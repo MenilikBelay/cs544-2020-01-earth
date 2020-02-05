@@ -1,5 +1,6 @@
 package com.cs544.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,8 @@ public class Location {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id ;
+	@Column(unique = true)
+	private String locationId;
 	@Lob
 	private String description;
   
@@ -32,5 +35,10 @@ public class Location {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	public String getLocationId() {
+		return locationId;
+	}
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
+	}
 }
