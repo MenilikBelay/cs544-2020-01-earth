@@ -24,6 +24,10 @@ public class AdminController {
 
         return  courseService.add(course);
     }
+    @GetMapping("/courses/{id}")
+    public Course getCourseById(@PathVariable(value = "id") String courseId){
+       return  courseService.getCourseById(courseId);
+    }
 
 
     @RequestMapping(value = "/")
