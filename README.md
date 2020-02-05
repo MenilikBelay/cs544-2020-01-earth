@@ -9,5 +9,5 @@ Working usecases:
 
 
 
-Files: Attendance System Architecture.docx  ----- Description
-UML.png ------- UML diagram
+Files: Attendance System Architecture.docx  ----- Description  
+UML.png ------- UML diagram  
