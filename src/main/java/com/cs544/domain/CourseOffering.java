@@ -1,5 +1,7 @@
 package com.cs544.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,27 +13,30 @@ public class CourseOffering {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(unique = true)
-	private String courseOfferingId;
+	private String courseOfferingID;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@ManyToOne
+	@JsonIgnore
 	private Course course ;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "offering_id")
 	private List<Session> session;
 	
 	public CourseOffering() {}
+		
 	
-	public CourseOffering(Date startDate, Date endDate, Course course,
-			List<Session> session) {
+	public CourseOffering(String courseOfferingID, Date endDate, Date startDate, Course course,
+						  List<Session> session) {
+		this.courseOfferingID = courseOfferingID;
 		this.endDate = endDate;
 		this.startDate = startDate;
 		this.course = course;
 		this.session = new ArrayList<>();
 		this.session.addAll(session);
 	}
-
 	public Long getId() {
 		return id;
 	}
@@ -71,12 +76,12 @@ public class CourseOffering {
 		this.session = session;
 	}
 
-	public String getCourseOfferingId() {
-		return courseOfferingId;
+	public String getCourseOfferingID() {
+		return courseOfferingID;
 	}
 
-	public void setCourseOfferingId(String courseOfferingId) {
-		this.courseOfferingId = courseOfferingId;
+	public void setCourseOfferingID(String courseOfferingID) {
+		this.courseOfferingID = courseOfferingID;
 	}	
 
 }

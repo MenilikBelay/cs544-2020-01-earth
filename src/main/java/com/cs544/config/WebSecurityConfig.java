@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         //   super.configure(http);
-        http
+        http.httpBasic().and()
                 .csrf().disable()
                 .authorizeRequests()
                 //only for users with admin role : xlm= access="ROLE_ADMIN"
@@ -53,9 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
                 // xml= access="IS_AUTHENTICATED_ANONYMOUSLY"
-                .antMatchers("/anonymous*").anonymous()
-                // access=none
-                .antMatchers("/login*").permitAll().anyRequest().authenticated()
+                .antMatchers("/anonymous*").anonymous().// access=none
+                antMatchers("/login*").permitAll().anyRequest().authenticated()
                 .and()
                 .formLogin()
 

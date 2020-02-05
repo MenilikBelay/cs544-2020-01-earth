@@ -9,18 +9,26 @@ import javax.persistence.Lob;
 
 @Entity
 public class Course {
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private long Id;
-		@Column(unique = true)
-		private String courseID;
-		@Lob
-		private String description;
-		public long getId() {
-			return Id;
-		}
-						
-		public Course() {}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long Id;
+	@Column(unique = true)
+	private String courseID;
+	@Lob
+	private String description;
+	public long getId() {
+		return Id;
+	}
+	public Course() {}
+
+	@Override
+	public String toString() {
+		return "Course{" +
+				"Id=" + Id +
+				", courseID='" + courseID + '\'' +
+				", description='" + description + '\'' +
+				'}';
+	}
 		public Course(long id, String courseID, String description) {
 			Id = id;
 			this.courseID = courseID;
