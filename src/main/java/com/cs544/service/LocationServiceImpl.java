@@ -18,7 +18,7 @@ public class LocationServiceImpl implements LocationService {
     private LocationRepository locationDao;
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void save(Location location) {
         locationDao.save(location);
     }
@@ -31,4 +31,29 @@ public class LocationServiceImpl implements LocationService {
         return locations;
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void update(Location location) {
+    	List<Location> locations = new ArrayList<Location>();
+    	locations =  (List<Location>) locationDao.findAll();
+    	boolean flag = false;
+    	for(Location loc : locations)
+    	{
+    		if(loc.getLocationID().equals(location.getLocationID()))
+    		{loc.setDescription(location.getDescription());
+    		flag = true;}
+    	}if(flag == false)
+	    	{
+    			save(location);
+	    	}
+    }
+  /*  
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public boolean delet() {
+    	List<Location> locations = new ArrayList<Location>();
+        locationDao.findAll().forEach(locations::add);
+        return locations;
+    }
+     */ 
 }

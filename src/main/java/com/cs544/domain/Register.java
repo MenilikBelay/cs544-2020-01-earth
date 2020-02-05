@@ -7,9 +7,9 @@ public class Register {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	public Student student ;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	public OfferedCourse offeringCourses ;
 	
 	public Register() {}

@@ -17,9 +17,8 @@ public class AdminController {
     private LocationService locationService;
 
     @RequestMapping(value = "/")
-    public String locations(Location location ){
+    public String init(Location location ){
         return "admin";
-
     }
 
     @RequestMapping(value = "/locations",method = RequestMethod.POST)
@@ -30,5 +29,11 @@ public class AdminController {
     @RequestMapping(value = "/locations", method = RequestMethod.GET)
     public List<Location> findAll(){
         return locationService.findAll();
+    }
+    
+   @RequestMapping(value = "/locations{id}", method = RequestMethod.POST)
+    public boolean update(Location location){
+        locationService.update(location);
+        return true;
     }
 }
