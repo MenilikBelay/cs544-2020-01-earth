@@ -23,17 +23,16 @@ public class SessionServiceImp implements SessionService {
     @Autowired
     private SessionRepository sessionDao;
     
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public List<Student> getStudentsbySession(String sessionID) {
-	    	 List<Session>sessions = (List<Session>) sessionDao.findAll();
+	    	 Session session = sessionDao.getSessionBysessionID(sessionID);
 	    	 List<Student> students =
-	    	 sessions.stream().filter( s-> s.getSessionId().equals(sessionID))
-	    	 .flatMap(s-> s.getRecords().stream())
+	    	 session.getRecords().stream()
 	    	 .map(r -> r.getStudent()).collect(Collectors.toList());
     	 return students;	
     	}
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public List<Session> getSessions() {
 		// TODO Auto-generated method stub	
