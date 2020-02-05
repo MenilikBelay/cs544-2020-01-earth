@@ -1,5 +1,7 @@
 package com.cs544.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,8 +18,12 @@ public class OfferedCourse {
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@ManyToOne
+	@JsonIgnore
 	private Course course ;
-	@OneToMany
+	@Transient
+	private String courseid;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "offering_id")
 	private List<Session> session;
 	
@@ -36,7 +42,13 @@ public class OfferedCourse {
 	public Long getId() {
 		return id;
 	}
+	public String getCourseid() {
+		return courseid;
+	}
 
+	public void setCourseid(String courseid) {
+		this.courseid = courseid;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}

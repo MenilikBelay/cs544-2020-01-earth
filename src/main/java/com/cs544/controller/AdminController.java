@@ -2,8 +2,10 @@ package com.cs544.controller;
 
 import com.cs544.domain.Course;
 import com.cs544.domain.Location;
+import com.cs544.domain.OfferedCourse;
 import com.cs544.domain.Timeslot;
 import com.cs544.service.CourseService;
+import com.cs544.service.CourseofferingService;
 import com.cs544.service.LocationService;
 import com.cs544.service.TimeSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class AdminController {
     CourseService courseService;
     @Autowired
     TimeSlotService timeSlotService;
+    @Autowired
+    CourseofferingService courseofferingService;
 
     //........course crud start..............
     @PostMapping("/courses")
@@ -67,9 +71,18 @@ public class AdminController {
         return timeSlotService.update(timeslotid,timeslot);
     }
     //........timeslot crud end...............
+
+    //...........courseoffering crud start..........
+        @PostMapping("/courseofferings")
+        public OfferedCourse add(@Valid @RequestBody OfferedCourse offerdCourses){
+
+        return courseofferingService.add(offerdCourses);
+
+        }
+
+    //...........courseoffering crud end..........
+
     @RequestMapping(value = "/")
-
-
     public String locations(Location location ){
         return "admin";
 

@@ -8,9 +8,9 @@ public class Session {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Location location;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Timeslot timeslot;
 	@Temporal(TemporalType.DATE)
 	private Date date ;
