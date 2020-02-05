@@ -8,11 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class OfferedCourse {
+public class CourseOffering {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String OfferingCourseID;
+	@Column(unique = true)
+	private String courseOfferingID;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	@Temporal(TemporalType.DATE)
@@ -26,12 +27,12 @@ public class OfferedCourse {
 	@JoinColumn(name = "offering_id")
 	private List<Session> session;
 	
-	public OfferedCourse() {}
+	public CourseOffering() {}
 		
 	
-	public OfferedCourse(String offeringCourseID, Date endDate, Date startDate, Course course,
-			List<Session> session) {
-		OfferingCourseID = offeringCourseID;
+	public CourseOffering(String courseOfferingID, Date endDate, Date startDate, Course course,
+						  List<Session> session) {
+		this.courseOfferingID = courseOfferingID;
 		this.endDate = endDate;
 		this.startDate = startDate;
 		this.course = course;
@@ -50,11 +51,11 @@ public class OfferedCourse {
 		this.session.add(session);
 	}
 
-	public String getOfferingCourseID() {
-		return OfferingCourseID;
+	public String getcourseOfferingID() {
+		return courseOfferingID;
 	}
-	public void setOfferingCourseID(String offeringCourseID) {
-		OfferingCourseID = offeringCourseID;
+	public void setcourseOfferingID(String courseOfferingID) {
+		courseOfferingID = courseOfferingID;
 	}
 	public Date getEndDate() {
 		return endDate;

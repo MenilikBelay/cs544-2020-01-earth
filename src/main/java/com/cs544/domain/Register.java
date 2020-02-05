@@ -10,7 +10,7 @@ public class Register {
 	@ManyToOne
 	public Student student ;
 	@ManyToOne
-	public OfferedCourse offeringCourses ;
+	public CourseOffering offeringCourses ;
 	
 	public Register() {}
 	
@@ -20,10 +20,10 @@ public class Register {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	public OfferedCourse getOfferingCourses() {
+	public CourseOffering getOfferingCourses() {
 		return offeringCourses;
 	}
-	public void setOfferingCourses(OfferedCourse offeringCourses) {
+	public void setOfferingCourses(CourseOffering offeringCourses) {
 		this.offeringCourses = offeringCourses;
 	}
 	

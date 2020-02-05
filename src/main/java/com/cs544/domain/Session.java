@@ -14,8 +14,19 @@ public class Session {
 	private Timeslot timeslot;
 	@Temporal(TemporalType.DATE)
 	private Date date ;
-	
-  
+
+	/*public Record getRecord() {
+		return record;
+	}
+
+	public void setRecord(Record record) {
+		this.record = record;
+	}*/
+
+/*	@OneToOne(cascade = CascadeType.REMOVE)
+	@Nullable
+	private Record record;*/
+
 	public Session() {}
 	public Session(Location location, Timeslot timeslot, Date date) {
 		this.location = location;

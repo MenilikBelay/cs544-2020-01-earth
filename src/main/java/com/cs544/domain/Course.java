@@ -8,6 +8,7 @@ public class Course {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 		private long Id;
+
 		private String courseID;
 		@Lob
 		private String description;

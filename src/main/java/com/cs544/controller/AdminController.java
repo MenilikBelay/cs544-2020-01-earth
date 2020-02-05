@@ -2,7 +2,7 @@ package com.cs544.controller;
 
 import com.cs544.domain.Course;
 import com.cs544.domain.Location;
-import com.cs544.domain.OfferedCourse;
+import com.cs544.domain.CourseOffering;
 import com.cs544.domain.Timeslot;
 import com.cs544.service.CourseService;
 import com.cs544.service.CourseofferingService;
@@ -74,11 +74,21 @@ public class AdminController {
 
     //...........courseoffering crud start..........
         @PostMapping("/courses/{id}/courseofferings")
-        public OfferedCourse add(@PathVariable(value = "id") String id,@Valid @RequestBody OfferedCourse offerdCourses){
+        public CourseOffering add(@PathVariable(value = "id") String id, @Valid @RequestBody CourseOffering offerdCourses){
 
         return courseofferingService.add(offerdCourses,id);
 
         }
+    @DeleteMapping("/courseofferings/{id}")
+    public void deleteCourseOfferingById(@PathVariable(value = "id") String id){
+        courseofferingService.getCourseOfferingById(id);
+
+    }
+    @GetMapping("/courseofferings/{id}")
+    public CourseOffering getCourseOfferingById(@PathVariable(value = "id") String courseId){
+        return  courseofferingService.getCourseOfferingById(courseId);
+    }
+
 
     //...........courseoffering crud end..........
 

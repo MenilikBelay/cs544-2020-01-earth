@@ -3,7 +3,7 @@ package com.cs544.service;
 import com.cs544.dao.CourseOfferingRepository;
 import com.cs544.dao.CourseRepository;
 import com.cs544.domain.Course;
-import com.cs544.domain.OfferedCourse;
+import com.cs544.domain.CourseOffering;
 import com.cs544.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +11,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CourseOfferringServiceImpl implements  CourseofferingService {
-@Autowired
+
+    @Autowired
     CourseOfferingRepository courseOfferingRepository;
-@Autowired
+
+    @Autowired
     CourseRepository courseRepository;
+
     @Override
-    public OfferedCourse add(OfferedCourse courseOffering, String id) {
+    public CourseOffering add(CourseOffering courseOffering, String id) {
 
         Course course=  courseRepository.getCourseByCourseID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
 
@@ -27,17 +30,23 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
     }
 
     @Override
-    public ResponseEntity<?> deleteCourseById(String id) {
+    public ResponseEntity<?> deleteCourseOfferingById(String id) {
+        CourseOffering course=  courseOfferingRepository.getOfferedCourseByCourseOfferingID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
+
+        courseOfferingRepository.delete(course);
+
+        return ResponseEntity.ok().build();
+    }
+
+
+    @Override
+    public CourseOffering update(String id, CourseOffering courseOffering) {
         return null;
     }
 
     @Override
-    public OfferedCourse update(String id, OfferedCourse offeredCourse) {
-        return null;
-    }
+    public CourseOffering getCourseOfferingById(String id) {
+        return courseOfferingRepository.getOfferedCourseByCourseOfferingID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
 
-    @Override
-    public OfferedCourse getCourseOfferingById(String id) {
-        return null;
     }
 }
