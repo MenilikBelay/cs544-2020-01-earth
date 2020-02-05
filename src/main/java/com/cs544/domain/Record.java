@@ -1,5 +1,6 @@
 package com.cs544.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,19 +11,14 @@ import javax.persistence.OneToOne;
 @Entity
 public class Record {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Student student;
-	@OneToOne
-	private Session session;
-
 	public Record() {}
 	
-	public Record(long id, Student student, Session session) {
-		this.id = id;
+	public Record(Student student) {
 		this.student = student;
-		this.session = session;
 	}
 	public long getId() {
 		return id;
@@ -35,11 +31,5 @@ public class Record {
 	}
 	public void setStudent(Student student) {
 		this.student = student;
-	}
-	public Session getSession() {
-		return session;
-	}
-	public void setSession(Session session) {
-		this.session = session;
 	}
 }

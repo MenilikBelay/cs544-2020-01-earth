@@ -1,9 +1,16 @@
 package com.cs544.domain;
 
-public class Register {
+import javax.persistence.*;
 
-	public Student student ; 
-	public OfferingCourses offeringCourses ;
+@Entity
+public class Register {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@ManyToOne(cascade = CascadeType.ALL)
+	public Student student ;
+	@ManyToOne(cascade = CascadeType.ALL)
+	public OfferedCourse offeringCourses ;
 	
 	public Register() {}
 	
@@ -13,10 +20,10 @@ public class Register {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	public OfferingCourses getOfferingCourses() {
+	public OfferedCourse getOfferingCourses() {
 		return offeringCourses;
 	}
-	public void setOfferingCourses(OfferingCourses offeringCourses) {
+	public void setOfferingCourses(OfferedCourse offeringCourses) {
 		this.offeringCourses = offeringCourses;
 	}
 	

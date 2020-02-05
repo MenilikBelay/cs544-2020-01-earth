@@ -1,15 +1,18 @@
 package com.cs544.domain;
 
+import javax.persistence.Entity;
+
 import java.util.List;
 
-public class Student extends IUser {
+@Entity
+public class Student extends Person {
 
 	private String studentID;
 	private String barcode;
-		
+
 	public Student() {}
 	
-	public Student(String email ,String password , String firstName,String lastName , String studentID, String barcode , List<String>roles ) {
+	public Student(String email ,String password , String firstName,String lastName , String studentID, String barcode , List<Role>roles ) {
 		super(email, password, firstName, lastName , roles);
 	
 		this.studentID = studentID;
