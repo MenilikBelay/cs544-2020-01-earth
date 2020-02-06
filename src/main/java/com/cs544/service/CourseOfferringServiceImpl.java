@@ -10,6 +10,7 @@ import com.cs544.domain.Session;
 import com.cs544.exception.ResourceNotFoundException;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,7 +69,7 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
 		
     	List<Session> listSession;
     	int courseAttendances = 0;
-    	int registeredStudents = 0;
+    	long registeredStudents = 0;
     	int courseSessions = 0;
     	
     	//2. Count number of sessions of the offering course
@@ -89,11 +90,17 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
     	
     	//1. How to get list of registered students
 //    	List<Optional<Register>> registers = getRegisteredStudents(courseOfferingId);
-    	registeredStudents = 2;//registers.size();
+    	Iterable<Register> listRegister = registerRepository.findAll();
+    	
+    	List<Register> registers = new ArrayList<>();
+    	listRegister.iterator().forEachRemaining(registers::add);
+    	
+    	registeredStudents = registers.stream().filter(s->s.getOfferedCourses().getCourseOfferingID().equals(courseOfferingId)).count();
+//    	registeredStudents = 2;//registers.size();
     	
     	
     	if(registeredStudents != 0) {
-    		return convertToPercentage(courseAttendances/(courseSessions*registeredStudents));
+    		return convertToPercentage(Math.round(courseAttendances/(courseSessions*registeredStudents)));
     	}
     	
         return "0.0%";
