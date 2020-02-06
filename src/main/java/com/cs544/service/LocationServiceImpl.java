@@ -15,34 +15,34 @@ import java.util.List;
 public class LocationServiceImpl implements LocationService {
 
     @Autowired
-    private LocationRepository locationDao;
+    private LocationRepository locationRepository;
     
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void save(Location location) {
-        locationDao.save(location);
+        locationRepository.save(location);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public List<Location> findAll() {
     	List<Location> locations = new ArrayList<Location>();
-        locationDao.findAll().forEach(locations::add);
+        locationRepository.findAll().forEach(locations::add);
         return locations;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void update(Location location) {
-    	Location previousLocation = locationDao.getLocationByLocationID(location.getLocationID());
+    	Location previousLocation = locationRepository.getLocationByLocationID(location.getLocationID());
     	previousLocation.setDescription(location.getDescription());
     	save(previousLocation);
     }
 
 	@Override
 	public boolean delete(Location location) {
-    	Location previousLocation = locationDao.getLocationByLocationID(location.getLocationID());
-	    locationDao.delete(previousLocation);
+    	Location previousLocation = locationRepository.getLocationByLocationID(location.getLocationID());
+	    locationRepository.delete(previousLocation);
         return true;
 	} 
 }
