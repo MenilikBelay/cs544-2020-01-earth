@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 @Service
 
 public class LocationServiceImpl implements LocationService {
@@ -19,7 +21,7 @@ public class LocationServiceImpl implements LocationService {
     
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void save(Location location) {
+    public void save(@Valid Location location) {
         locationDao.save(location);
     }
 
@@ -33,13 +35,14 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void update(Location location) {
+    public void update(@Valid Location location) {
     	Location previousLocation = locationDao.getLocationByLocationID(location.getLocationID());
     	previousLocation.setDescription(location.getDescription());
     	save(previousLocation);
     }
 
 	@Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
 	public boolean delete(Location location) {
     	Location previousLocation = locationDao.getLocationByLocationID(location.getLocationID());
 	    locationDao.delete(previousLocation);

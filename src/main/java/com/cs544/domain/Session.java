@@ -3,6 +3,9 @@ package com.cs544.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,16 +16,20 @@ public class Session {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@NotNull(message = "Required to fill this field")
+	@Size(min = 0 , max = 20 ,message = "must be in range 2-20")
 	String sessionID;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@Valid
 	private Location location;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@Valid
 	private Timeslot timeslot;
 	@Temporal(TemporalType.DATE)
 	private Date date;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany
 	@JsonIgnore
-	private List<Record> records;
+	private List<@Valid Record> records;
 	
   
 	public Session() {

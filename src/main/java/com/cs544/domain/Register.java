@@ -1,15 +1,19 @@
 package com.cs544.domain;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Register {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@Valid
 	private Student student;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@Valid
 	private CourseOffering courseOffering;
 	
 	public Register() {}

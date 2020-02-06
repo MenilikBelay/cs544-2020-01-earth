@@ -3,6 +3,9 @@ package com.cs544.service;
 import com.cs544.dao.CourseRepository;
 import com.cs544.domain.Course;
 import com.cs544.exception.ResourceNotFoundException;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,12 +17,10 @@ public class CourseServiceImpl implements CourseService {
     CourseRepository courseRepository;
 
     @Override
-    public Course add(Course course) {
+    public Course add(@Valid Course course) {
         courseRepository.save(course);
         return course;
     }
-
-
 
     @Override
     public ResponseEntity<?> deleteCourseById(String id) {
@@ -32,7 +33,7 @@ public class CourseServiceImpl implements CourseService {
 
 
     @Override
-    public Course update(String id,Course course) {
+    public Course update(String id,@Valid Course course) {
         Course courses=  courseRepository.getCourseByCourseID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
         courses.setDescription(course.getDescription());
         courses.setCourseID(course.getCourseID());

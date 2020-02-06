@@ -10,6 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.TituloEleitoral;
 
 
 @Entity
@@ -18,6 +22,7 @@ public class CourseOffering {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(unique = true)
+	@NotNull(message = "Required to fill this field")
 	private String courseOfferingID;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
@@ -25,6 +30,7 @@ public class CourseOffering {
 	private Date startDate;
 	@ManyToOne
 	@JsonIgnore
+	@Valid
 	private Course course ;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "offering_id")

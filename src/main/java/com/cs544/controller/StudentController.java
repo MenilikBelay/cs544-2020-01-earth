@@ -10,6 +10,5 @@ public class StudentController {
     @RequestMapping(value = "/")
     public String locations(Location location ){
         return "student";
-
     }
 }
