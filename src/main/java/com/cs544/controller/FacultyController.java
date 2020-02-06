@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/f")
+@RequestMapping(value = "/faculty")
 public class FacultyController {
 	
 	@Autowired
@@ -26,7 +26,7 @@ public class FacultyController {
 	
     @RequestMapping(value = "/")
     public String initiate(Location location ){
-        return "f";
+        return "faculty";
 
     }    
     
