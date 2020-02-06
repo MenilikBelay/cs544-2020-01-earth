@@ -10,6 +10,5 @@ import java.util.Optional;
 public interface CourseOfferingRepository extends CrudRepository<CourseOffering,Long> {
 
     public Optional<CourseOffering> getOfferedCourseByCourseOfferingID (String id);
-
-
+    public Optional<CourseOffering> findByCourseOfferingID (String courseOfferingID);
 }
