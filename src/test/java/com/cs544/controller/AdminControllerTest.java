@@ -19,8 +19,8 @@ class AdminControllerTest {
 AdminController adminController;
 @Mock
     CourseServiceImpl courseService;
-Course courses;
-final String courseID="cs567";
+    Course courses;
+    final String courseID="cs567";
 
     @BeforeEach
     public void startup() throws Exception{
