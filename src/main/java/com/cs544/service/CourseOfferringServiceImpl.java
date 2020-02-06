@@ -31,7 +31,7 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
 
     @Override
     public ResponseEntity<?> deleteCourseOfferingById(String id) {
-        CourseOffering course=  courseOfferingRepository.getOfferedCourseByCourseOfferingID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
+        CourseOffering course=  courseOfferingRepository.getCourseOfferingByCourseOfferingID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
 
         courseOfferingRepository.delete(course);
 
@@ -41,12 +41,25 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
 
     @Override
     public CourseOffering update(String id, CourseOffering courseOffering) {
-        return null;
+
+        CourseOffering courses=  courseOfferingRepository.getCourseOfferingByCourseOfferingID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
+        courses.setCourse(courseOffering.getCourse());
+        courses.setEndDate(courseOffering.getEndDate());
+        courses.setStartDate(courseOffering.getStartDate());
+        courses.setSession(courseOffering.getSession());
+
+        CourseOffering courseupdate=  courseOfferingRepository.save(courses);
+        return courseupdate;
     }
 
     @Override
     public CourseOffering getCourseOfferingById(String id) {
-        return courseOfferingRepository.getOfferedCourseByCourseOfferingID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
+        return courseOfferingRepository.getCourseOfferingByCourseOfferingID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
 
     }
+
+    /*@Override
+    public CourseOffering getCourseOfferingByCourseId(String id) {
+        return  courseOfferingRepository.getCourseOfferingByCourseId(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
+    }*/
 }

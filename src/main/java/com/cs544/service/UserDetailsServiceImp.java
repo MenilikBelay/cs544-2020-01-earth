@@ -1,7 +1,7 @@
-package com.cs544.service;
+ package com.cs544.service;
 
-import java.util.stream.Collectors;
-
+import com.cs544.dao.PersonRepository;
+import com.cs544.domain.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import com.cs544.dao.PersonRepository;
-import com.cs544.domain.Person;
+
+import java.util.stream.Collectors;
 
 public class UserDetailsServiceImp implements UserDetailsService {
 	

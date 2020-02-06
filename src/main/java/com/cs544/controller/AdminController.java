@@ -81,15 +81,22 @@ public class AdminController {
         }
     @DeleteMapping("/courseofferings/{id}")
     public void deleteCourseOfferingById(@PathVariable(value = "id") String id){
-        courseofferingService.getCourseOfferingById(id);
+        courseofferingService.deleteCourseOfferingById(id);
 
     }
     @GetMapping("/courseofferings/{id}")
     public CourseOffering getCourseOfferingById(@PathVariable(value = "id") String courseId){
         return  courseofferingService.getCourseOfferingById(courseId);
     }
+   /* @GetMapping("/courses/{id}/courseofferings")
+    public CourseOffering getCourseOfferingCourseById(@PathVariable(value = "id") String courseId){
+        return  courseofferingService.getCourseOfferingByCourseId(courseId);
+    }*/
 
-
+    @PutMapping("/courseofferings/{id}")
+    public CourseOffering update(@PathVariable(value = "id") String courseofferingId,@Valid @RequestBody CourseOffering courseOffering){
+        return courseofferingService.update(courseofferingId,courseOffering);
+    }
     //...........courseoffering crud end..........
 
     @RequestMapping(value = "/")

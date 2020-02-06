@@ -10,4 +10,6 @@ public interface CourseofferingService {
 
     public CourseOffering update(String id, CourseOffering courseOffering);
     public CourseOffering getCourseOfferingById(String id);
+  //  public CourseOffering getCourseOfferingByCourseId(String id);
+
 }

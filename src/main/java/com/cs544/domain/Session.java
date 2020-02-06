@@ -1,9 +1,6 @@
 package com.cs544.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,18 +17,19 @@ public class Session {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	@OneToMany
-	@JsonIgnore
+//	@JsonIgnore
 	private List<Record> records;
 	
   
 	public Session() {
 		this.records = new ArrayList<Record>();
 	}
-	public Session(Location location, Timeslot timeslot, Date date) {
+	public Session(Location location, Timeslot timeslot, Date date,List<Record> records) {
 		this();
 		this.location = location;
 		this.timeslot = timeslot;
 		this.date = date;
+		this.records.addAll(records);
 	}
 
 	
