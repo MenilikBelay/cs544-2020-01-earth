@@ -8,13 +8,11 @@ public class Record {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Student student;
-
 	public Record() {}
 	
-	public Record(long id, Student student) {
-		this.id = id;
+	public Record(Student student) {
 		this.student = student;
 	}
 	public long getId() {

@@ -18,7 +18,7 @@ public class LocationServiceImpl implements LocationService {
     private LocationRepository locationDao;
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void save(Location location) {
         locationDao.save(location);
     }
@@ -31,4 +31,18 @@ public class LocationServiceImpl implements LocationService {
         return locations;
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void update(Location location) {
+    	Location previousLocation = locationDao.getLocationByLocationID(location.getLocationID());
+    	previousLocation.setDescription(location.getDescription());
+    	save(previousLocation);
+    }
+
+	@Override
+	public boolean delete(Location location) {
+    	Location previousLocation = locationDao.getLocationByLocationID(location.getLocationID());
+	    locationDao.delete(previousLocation);
+        return true;
+	} 
 }
