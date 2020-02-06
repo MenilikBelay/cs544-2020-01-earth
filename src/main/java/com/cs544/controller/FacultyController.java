@@ -41,7 +41,7 @@ public class FacultyController {
     	return sessions;
     }
     
-    @RequestMapping(value = "/courseOffering/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/courseOffering", method = RequestMethod.GET)
     public String courseOfferingAttendances(String courseOfferingId){
     	System.out.println("Entering the FacultyController ...");
         String percentage =  courseofferingService.getCourseOfferingAttendances(courseOfferingId);

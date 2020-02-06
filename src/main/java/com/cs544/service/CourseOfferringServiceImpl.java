@@ -72,7 +72,7 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
     	long registeredStudents = 0;
     	int courseSessions = 0;
     	
-    	//2. Count number of sessions of the offering course
+    	//1. Count number of sessions of the offering course
     	//Optional<OfferedCourse> courseOffering = courseOfferingDao.findById(Long.valueOf(courseOfferingId));
     	Optional<CourseOffering> courseOffering = courseOfferingRepository.getOfferedCourseByCourseOfferingID(courseOfferingId);
     	
@@ -88,7 +88,7 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
     	}
     	
     	
-    	//1. How to get list of registered students
+    	//2. How to get list of registered students
 //    	List<Optional<Register>> registers = getRegisteredStudents(courseOfferingId);
     	Iterable<Register> listRegister = registerRepository.findAll();
     	
@@ -96,14 +96,13 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
     	listRegister.iterator().forEachRemaining(registers::add);
     	
     	registeredStudents = registers.stream().filter(s->s.getOfferedCourses().getCourseOfferingID().equals(courseOfferingId)).count();
-//    	registeredStudents = 2;//registers.size();
-    	
     	
     	if(registeredStudents != 0) {
-    		return convertToPercentage(Math.round(courseAttendances/(courseSessions*registeredStudents)));
+    		return "Number of attendances / All course offering sessions: " + courseAttendances + "/" + courseSessions*registeredStudents;
+//    		return convertToPercentage(Math.round(courseAttendances/(courseSessions*registeredStudents)));
     	}
     	
-        return "0.0%";
+        return "Number of attendances / All course offering sessions: 0.0%";
 	}
 
 	@Override
