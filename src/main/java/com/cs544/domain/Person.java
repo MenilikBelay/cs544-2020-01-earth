@@ -1,6 +1,11 @@
 package com.cs544.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,9 +15,15 @@ public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotNull(message = "Required to fill this field")
+	@Email(message = "must be in email format")
 	private String email;
+	@NotNull
+	@Size(min=2,max = 12 , message ="length must be 2 - 12 ")
 	private String password;
+	@NotNull(message = "Required to fill this field")
 	private String firstName;
+	@NotNull(message = "Required to fill this field")
 	private String lastName;
 	@OneToMany
 	@JoinColumn(name = "user_id")

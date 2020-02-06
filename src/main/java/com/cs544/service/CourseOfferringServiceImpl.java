@@ -5,6 +5,9 @@ import com.cs544.dao.CourseRepository;
 import com.cs544.domain.Course;
 import com.cs544.domain.CourseOffering;
 import com.cs544.exception.ResourceNotFoundException;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,7 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
     CourseRepository courseRepository;
 
     @Override
-    public CourseOffering add(CourseOffering courseOffering, String id) {
+    public CourseOffering add(@Valid CourseOffering courseOffering, String id) {
 
         Course course=  courseRepository.getCourseByCourseID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
 
@@ -40,7 +43,7 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
 
 
     @Override
-    public CourseOffering update(String id, CourseOffering courseOffering) {
+    public CourseOffering update(String id,@Valid CourseOffering courseOffering) {
 
         CourseOffering courses=  courseOfferingRepository.getCourseOfferingByCourseOfferingID(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id",id));
         courses.setCourse(courseOffering.getCourse());

@@ -1,13 +1,19 @@
 package com.cs544.controller;
 
+import com.cs544.dao.PersonRepository;
 import com.cs544.domain.Course;
 import com.cs544.domain.Location;
+import com.cs544.domain.Person;
+import com.cs544.domain.Student;
 import com.cs544.domain.CourseOffering;
 import com.cs544.domain.Timeslot;
 import com.cs544.service.CourseService;
 import com.cs544.service.CourseofferingService;
 import com.cs544.service.LocationService;
+import com.cs544.service.StudentService;
 import com.cs544.service.TimeSlotService;
+import com.cs544.service.UserDetailsServiceImp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +40,7 @@ public class AdminController {
     TimeSlotService timeSlotService;
     @Autowired
     CourseofferingService courseofferingService;
-
+        
     //........course crud start..............
     @PostMapping("/courses")
     public Course add(@Valid @RequestBody Course course){
@@ -106,14 +112,8 @@ public class AdminController {
         return courseofferingService.update(courseofferingId,courseOffering);
     }
     //...........courseoffering crud end..........
-
-    @RequestMapping(value = "/")
-    public String init(Location location ){
-        return "admin";
-    }
-
     @RequestMapping(value = "/locations",method = RequestMethod.POST)
-    public boolean save(Location location ){
+    public boolean save(@Valid Location location ){
         locationService.save(location);
         return true;
     }
@@ -122,13 +122,13 @@ public class AdminController {
         return locationService.findAll();
     }
     
-   @RequestMapping(value = "/locations{id}", method = RequestMethod.PUT)
-    public boolean update(Location location){
+   @RequestMapping(value = "/locations", method = RequestMethod.PUT)
+    public boolean update(@Valid Location location){
         locationService.update(location);
         return true;
     }
    @RequestMapping(value = "/locations", method = RequestMethod.DELETE)
-   public boolean delete(Location location){
+   public boolean delete(@Valid Location location){
        locationService.delete(location);
        return true;
    }

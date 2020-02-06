@@ -13,4 +13,6 @@ public interface CourseOfferingRepository extends CrudRepository<CourseOffering,
   //  public Optional<CourseOffering> getCourseOfferingByCourseId (String id);
 
 
+    public Optional<CourseOffering> getOfferedCourseByCourseOfferingID (String id);
+    public Optional<CourseOffering> findByCourseOfferingID (String courseOfferingID);
 }
