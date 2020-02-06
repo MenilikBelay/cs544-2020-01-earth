@@ -1,20 +1,18 @@
 package com.cs544.controller;
 
-import com.cs544.domain.Location;
 import com.cs544.domain.Session;
 import com.cs544.domain.Student;
 import com.cs544.domain.Timeslot;
 import com.cs544.service.CourseofferingService;
 import com.cs544.service.SessionService;
 import com.cs544.service.TimeSlotService;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/faculty")
@@ -29,8 +27,8 @@ public class FacultyController {
     @Autowired
     CourseofferingService courseofferingService;   
     
-    @RequestMapping(value = "/session_students" , method = RequestMethod.GET)
-    public List<Student> viewAttendanceBySession(String sessionID) {  		
+    @RequestMapping(value = "/sessions/{id}", method = RequestMethod.GET)
+    public List<Student> viewAttendanceBySession(@PathVariable(value = "id") String sessionID) {
     	List<Student> students = sessionService.getStudentsbySession(sessionID);
     	return students;
     }
@@ -40,8 +38,8 @@ public class FacultyController {
     	return sessions;
     }
     
-    @RequestMapping(value = "/courseOffering", method = RequestMethod.GET)
-    public String courseOfferingAttendances(String courseOfferingId){
+    @RequestMapping(value = "/courseOfferings/{id}", method = RequestMethod.GET)
+    public String courseOfferingAttendances(@PathVariable(value="id") String courseOfferingId){
     	System.out.println("Entering the FacultyController ...");
         String percentage =  courseofferingService.getCourseOfferingAttendances(courseOfferingId);
         return percentage;

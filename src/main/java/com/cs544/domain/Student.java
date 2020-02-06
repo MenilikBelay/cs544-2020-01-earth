@@ -14,7 +14,7 @@ public class Student extends PersonRole {
 	@Size(min = 1 , max = 20)
 	private String barcode;
 
-	private Student() {
+	public Student() {
 		super(Role.STUDENT);
 	}
 	

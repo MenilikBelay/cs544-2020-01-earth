@@ -8,16 +8,14 @@ import com.cs544.domain.CourseOffering;
 import com.cs544.domain.Register;
 import com.cs544.domain.Session;
 import com.cs544.exception.ResourceNotFoundException;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseOfferringServiceImpl implements  CourseofferingService {
@@ -124,13 +122,13 @@ public class CourseOfferringServiceImpl implements  CourseofferingService {
 		return listRegister;
 	}
 	
-	private String convertToPercentage(double dNum) {
+	/*private String convertToPercentage(double dNum) {
 	    DecimalFormat percentFormat = new DecimalFormat("0.0%");
 	    percentFormat.setDecimalSeparatorAlwaysShown(false);
 	    percentFormat.setMinimumFractionDigits(1);
 	    percentFormat.setMaximumFractionDigits(2);
 	    return percentFormat.format(dNum);
-	}
+	}*/
 
     /*@Override
     public CourseOffering getCourseOfferingByCourseId(String id) {
