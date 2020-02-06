@@ -1,6 +1,9 @@
 package com.cs544.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,29 +13,32 @@ public class Session {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@ManyToOne
+	String sessionID;
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Location location;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Timeslot timeslot;
 	@Temporal(TemporalType.DATE)
 	private Date date;
-	@OneToMany
-//	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Record> records;
 	
   
 	public Session() {
 		this.records = new ArrayList<Record>();
 	}
-	public Session(Location location, Timeslot timeslot, Date date,List<Record> records) {
+	public Session(Location location, Timeslot timeslot, Date date) {
 		this();
 		this.location = location;
 		this.timeslot = timeslot;
 		this.date = date;
+		this.records = new ArrayList<Record>();
+	}
+	
+	public void setRecord(List<Record> records) {
 		this.records.addAll(records);
 	}
-
-	
 	
 	public List<Record> getRecords() {
 		return records;
@@ -45,6 +51,13 @@ public class Session {
 	}
 	private void setId(long id) {
 		this.id = id;
+	}
+	
+	public String getSessionId() {
+		return sessionID;
+	}
+	public void setSessionId(String sessionId) {
+		this.sessionID = sessionId;
 	}
 	public Location getLocation() {
 		return location;

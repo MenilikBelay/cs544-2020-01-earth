@@ -13,16 +13,25 @@ public class Location {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id ;
 	@Column(unique = true)
-	private String locationId;
+	private String locationID;
 	@Lob
 	private String description;
   
 	public Location(){}
-	public Location(long id, String description) {
-		this.id = id;
+	
+	public Location(String locationID , String description) {
 		this.description = description;
+		this.locationID = locationID;
+
 	}
 	
+	public String getLocationID() {
+		return locationID;
+	}
+	public void setLocationID(String locationID) {
+		this.locationID = locationID;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -34,11 +43,5 @@ public class Location {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public String getLocationId() {
-		return locationId;
-	}
-	public void setLocationId(String locationId) {
-		this.locationId = locationId;
 	}
 }
