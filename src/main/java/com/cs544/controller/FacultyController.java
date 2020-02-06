@@ -22,13 +22,7 @@ public class FacultyController {
 	SessionService sessionService;
 	
     @Autowired
-    CourseofferingService courseofferingService;
-	
-    @RequestMapping(value = "/")
-    public String initiate(Location location ){
-        return "faculty";
-
-    }    
+    CourseofferingService courseofferingService;   
     
     @RequestMapping(value = "/session_students" , method = RequestMethod.GET)
     public List<Student> viewAttendanceBySession(String sessionID) {  		

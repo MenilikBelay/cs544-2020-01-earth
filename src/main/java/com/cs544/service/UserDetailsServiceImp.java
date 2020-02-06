@@ -1,18 +1,23 @@
-package com.cs544.service;
+ package com.cs544.service;
 
-import java.util.stream.Collectors;
+import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.stream.Collectors;
+
 import com.cs544.dao.PersonRepository;
 import com.cs544.domain.Person;
-
+import com.cs544.domain.Student;
 public class UserDetailsServiceImp implements UserDetailsService {
 	
 	@Autowired
@@ -27,8 +32,8 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	 */
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Person user = personRepository.findByEmail(username).orElse(null);
+	public UserDetails loadUserByUsername( String username) throws UsernameNotFoundException {
+	    Person user = personRepository.findByEmail(username).orElse(null);
 		UserBuilder builder = null;
 	    if (user != null) {
 	      builder = org.springframework.security.core.userdetails.User.withUsername(username);
@@ -40,8 +45,6 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	    } else {
 	      throw new UsernameNotFoundException("User Not Found.");
 	    }
-
 	    return builder.build();
 	}
-
 }

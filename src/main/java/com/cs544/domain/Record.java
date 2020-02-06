@@ -1,6 +1,8 @@
 package com.cs544.domain;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="attendance")
@@ -8,7 +10,8 @@ public class Record {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@Valid
 	private Student student;
 	public Record() {}
 	

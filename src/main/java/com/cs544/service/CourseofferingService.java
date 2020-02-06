@@ -18,4 +18,6 @@ public interface CourseofferingService {
     
 	String getCourseOfferingAttendances(String courseOfferingId);
 	List<Optional<Register>> getRegisteredStudents(String courseOffering);
+  //  public CourseOffering getCourseOfferingByCourseId(String id);
+
 }
