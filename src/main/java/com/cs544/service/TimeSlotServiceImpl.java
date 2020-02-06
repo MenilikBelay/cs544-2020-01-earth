@@ -3,9 +3,15 @@ package com.cs544.service;
 import com.cs544.dao.TimeSlotRepository;
 import com.cs544.domain.Timeslot;
 import com.cs544.exception.ResourceNotFoundException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class TimeSlotServiceImpl implements TimeSlotService {
@@ -40,4 +46,12 @@ public class TimeSlotServiceImpl implements TimeSlotService {
         Timeslot timeslot1=timeSlotRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Note", "id",id));
         return timeslot1;
     }
+    
+    @Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public List<Timeslot> findAll() {
+		List<Timeslot> timeslots = new ArrayList<Timeslot>();
+		timeSlotRepository.findAll().forEach(timeslots::add);
+		return timeslots;
+	}
 }

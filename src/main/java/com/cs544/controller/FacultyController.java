@@ -3,8 +3,10 @@ package com.cs544.controller;
 import com.cs544.domain.Location;
 import com.cs544.domain.Session;
 import com.cs544.domain.Student;
+import com.cs544.domain.Timeslot;
 import com.cs544.service.CourseofferingService;
 import com.cs544.service.SessionService;
+import com.cs544.service.TimeSlotService;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ public class FacultyController {
 	
 	@Autowired
 	SessionService sessionService;
+	
+	@Autowired
+	private TimeSlotService timeSlotService;
 	
     @Autowired
     CourseofferingService courseofferingService;   
@@ -40,5 +45,10 @@ public class FacultyController {
     	System.out.println("Entering the FacultyController ...");
         String percentage =  courseofferingService.getCourseOfferingAttendances(courseOfferingId);
         return percentage;
+    }
+    
+    @RequestMapping(value="/timeslots", method = RequestMethod.GET)
+    public List<Timeslot> findAllTimeslot(){
+    	return timeSlotService.findAll();
     }
 }
