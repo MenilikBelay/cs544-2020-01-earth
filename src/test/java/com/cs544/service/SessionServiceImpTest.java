@@ -1,32 +1,22 @@
 package com.cs544.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
-
+import com.cs544.dao.CourseOfferingRepository;
+import com.cs544.dao.RegisterRepository;
+import com.cs544.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.cs544.dao.CourseOfferingRepository;
-import com.cs544.dao.RegisterRepository;
-import com.cs544.domain.Course;
-import com.cs544.domain.CourseOffering;
-import com.cs544.domain.Location;
-import com.cs544.domain.Person;
-import com.cs544.domain.PersonRole;
-import com.cs544.domain.Register;
-import com.cs544.domain.Session;
-import com.cs544.domain.Student;
-import com.cs544.domain.Timeslot;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
 class SessionServiceImpTest {
 	

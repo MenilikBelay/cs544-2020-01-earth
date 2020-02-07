@@ -1,11 +1,5 @@
 package com.cs544;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.jms.ConnectionFactory;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
@@ -16,10 +10,13 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
+import javax.jms.ConnectionFactory;
+
 
 
 @SpringBootApplication
 @EnableJms
+
 public class Cs544202001EarthApplication{
 	@Bean
 	public JmsListenerContainerFactory<?> myFactory (ConnectionFactory connectionFactory ,

@@ -15,9 +15,9 @@ import static org.mockito.Mockito.when;
 
 class AdminControllerTest {
 
-@InjectMocks
-AdminController adminController;
-@Mock
+    @InjectMocks
+    AdminController adminController;
+    @Mock
     CourseServiceImpl courseService;
     Course courses;
     final String courseID="cs567";
