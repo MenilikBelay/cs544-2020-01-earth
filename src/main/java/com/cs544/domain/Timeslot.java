@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.ISBN;
 
 @Entity
 public class Timeslot {
@@ -17,10 +21,11 @@ public class Timeslot {
 	private Date beginTime;
 	@Temporal(TemporalType.TIME)
 	private Date endTime;
+	@NotNull(message = "Required to fill this field")
+	@Size(min = 2 , max = 2 , message = "must be 2 char 'AM' or 'BM' ")
 	private String abbrevition;
 
 	public Timeslot(){}
-
 	public long getId() {
 		return id;
 	}

@@ -3,13 +3,11 @@ package com.cs544.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 
 @Entity
@@ -18,6 +16,7 @@ public class CourseOffering {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(unique = true)
+	@NotNull(message = "Required to fill this field")
 	private String courseOfferingID;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
@@ -25,10 +24,11 @@ public class CourseOffering {
 	private Date startDate;
 	@ManyToOne
 	@JsonIgnore
+	@Valid
 	private Course course ;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "offering_id")
-	private List<Session> session;
+	private List<@Valid   Session> session;
 	
 	public CourseOffering() {}
 		

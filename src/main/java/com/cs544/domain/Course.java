@@ -1,11 +1,8 @@
 package com.cs544.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Course {
@@ -13,8 +10,11 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
 	@Column(unique = true)
+	@NotNull(message = "Required to fill this field")
+	@Size(min = 3 , max = 7)
 	private String courseID;
 	@Lob
+	@NotNull(message = "this field Requires")
 	private String description;
 	public long getId() {
 		return Id;

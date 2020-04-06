@@ -47,8 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 //only for users with admin role : xlm= access="ROLE_ADMIN"
-                .antMatchers("/admin/**").hasAnyRole(Role.ADMIN.toString()).
-                antMatchers("/faculty/**").hasAnyRole(Role.FACULTY.toString())
+                .antMatchers("/admin/**").hasAnyRole(Role.ADMIN.toString())
+                .antMatchers("/faculty/**").hasAnyRole(Role.FACULTY.toString())
                 .antMatchers("/student/**").hasAnyRole(Role.STUDENT.toString())
 
 
