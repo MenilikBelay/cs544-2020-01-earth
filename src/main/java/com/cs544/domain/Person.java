@@ -1,11 +1,10 @@
 package com.cs544.domain;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Email;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,11 +24,13 @@ public class Person {
 	private String firstName;
 	@NotNull(message = "Required to fill this field")
 	private String lastName;
-	@OneToMany
+	@OneToMany(cascade =  CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private List<PersonRole> personRoles; 
 
-	public Person () {}
+	public Person () {
+
+	}
 	
 	public Person (String email ,String password , String firstName,String lastName, List<PersonRole> roles) {
 		if (roles == null || roles.isEmpty()) {

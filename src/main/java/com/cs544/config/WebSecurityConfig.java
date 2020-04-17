@@ -50,6 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAnyRole(Role.ADMIN.toString())
                 .antMatchers("/faculty/**").hasAnyRole(Role.FACULTY.toString())
                 .antMatchers("/student/**").hasAnyRole(Role.STUDENT.toString())
+                .antMatchers("/").permitAll()
+                .antMatchers("/users/**").permitAll()
 
 
                 // xml= access="IS_AUTHENTICATED_ANONYMOUSLY"
